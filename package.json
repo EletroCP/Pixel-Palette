@@ -1,0 +1,26 @@
+{
+  "name": "pixel-palette",
+  "version": "1.0.0",
+  "description": "Ferramenta para criação de pixel art.",
+  "main": "script.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EletroCP/Pixel-Palette.git"
+  },
+  "keywords": [
+    "pixel-palette",
+    "Pixel-Art"
+  ],
+  "author": "EletroCP",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EletroCP/Pixel-Palette/issues"
+  },
+  "homepage": "https://github.com/EletroCP/Pixel-Palette#readme",
+  "devDependencies": {
+    "jest": "^28.1.1"
+  }
+}
