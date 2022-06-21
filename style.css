@@ -8,3 +8,9 @@
   height: 40px;
   border: solid black 1px;
 }
+
+#board {
+  display: flex;
+  width: 50%;
+  flex-wrap: wrap;
+}

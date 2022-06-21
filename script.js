@@ -33,6 +33,13 @@ const changeSampleBackgroundColor = () => {
   sample.style.backgroundColor = newColor;
 }
 
+const resetBoard = () => {
+  inputSize.value = 5;
+  inputSizeValue.innerText = 5;
+  generateBoard();
+}
+
+clear.addEventListener('click', resetBoard);
 inputSize.addEventListener('change', changeInputSizeValue);
 inputColor.addEventListener('change', changeSampleBackgroundColor);
 
