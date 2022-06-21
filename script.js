@@ -9,8 +9,17 @@ const randoPalette = document.getElementById('randon-palette');
 
 const changeInputSizeValue = () => {
   const newValue = inputSize.value;
-  console.log(newValue)
   inputSizeValue.innerText = newValue;
 }
 
+const changeSampleBackgroundColor = () => {
+  const newColor = inputColor.value;
+  sample.style.backgroundColor = newColor;
+}
+
 inputSize.addEventListener('change', changeInputSizeValue);
+inputColor.addEventListener('change', changeSampleBackgroundColor);
+
+window.onload = () => {
+  changeSampleBackgroundColor()
+};
