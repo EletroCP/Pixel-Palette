@@ -8,8 +8,14 @@ const paletteSize = document.getElementById('palette-size');
 const randoPalette = document.getElementById('randon-palette');
 const board = document.getElementById('board');
 
+let color = 'black';
+
 const clearBoard = () => {
   document.querySelectorAll('.pixel').forEach((pixel) => pixel.remove());
+}
+
+const paint = ({ target }) => {
+  target.style.backgroundColor = color;
 }
 
 const generateBoard = () => {
@@ -18,7 +24,8 @@ const generateBoard = () => {
   for(let index = 0; index < number ; index +=1) {
     const element = document.createElement('div');
     element.className = 'pixel';
-    board.appendChild(element)
+    element.addEventListener('click', paint);
+    board.appendChild(element);
   }
 }
 
@@ -38,11 +45,15 @@ const resetBoard = () => {
   inputSizeValue.innerText = 5;
   generateBoard();
 }
+const getColor = () => {
+  color = sample.style.backgroundColor;
+}
 
+sample.addEventListener('click', getColor)
 clear.addEventListener('click', resetBoard);
 inputSize.addEventListener('change', changeInputSizeValue);
 inputColor.addEventListener('change', changeSampleBackgroundColor);
-
+sample
 window.onload = () => {
   changeSampleBackgroundColor();
   generateBoard();
