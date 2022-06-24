@@ -10,6 +10,7 @@ const board = document.getElementById('board');
 const palette = document.getElementById('palette');
 const standardSamples = document.getElementById('standard-samples');
 const randoPaletteContainer = document.getElementById('randon-palette-container');
+const inputSizeInfo = document.getElementById('input-size-info');
 
 let color = 'black';
 
@@ -24,7 +25,9 @@ const paint = ({ target }) => {
 const generateBoard = () => {
   clearBoard();
   const number = parseInt(inputSizeValue.innerText);
-  for(let index = 0; index < number ; index +=1) {
+  const size = number * number
+  inputSizeInfo.innerHTML = `A tela possui ${size} pixels`
+  for(let index = 0; index < size ; index +=1) {
     const element = document.createElement('div');
     element.className = 'pixel';
     element.addEventListener('click', paint);
@@ -54,7 +57,7 @@ const generateColorPaletteDefault = () => {
 }
 
 const changeInputSizeValue = () => {
-  const newValue = inputSize.value;
+  const newValue = Number(inputSize.value);
   inputSizeValue.innerText = newValue;
   generateBoard();
 }
@@ -65,8 +68,8 @@ const changeSampleBackgroundColor = () => {
 }
 
 const resetBoard = () => {
-  inputSize.value = 5;
-  inputSizeValue.innerText = 5;
+  inputSize.value = 05;
+  inputSizeValue.innerText = 05;
   generateBoard();
 }
 const getColor = () => {
@@ -97,7 +100,7 @@ generatePalette.addEventListener('click', generateRandoPaletter)
 sample.addEventListener('click', getColor)
 clear.addEventListener('click', resetBoard);
 inputSize.addEventListener('input', changeInputSizeValue);
-inputColor.addEventListener('change', changeSampleBackgroundColor, getColor);
+inputColor.addEventListener('input', changeSampleBackgroundColor, getColor);
 window.onload = () => {
   changeSampleBackgroundColor();
   generateBoard();
