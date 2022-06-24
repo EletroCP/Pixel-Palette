@@ -10,21 +10,29 @@
 </head>
 
 <body>
-	<section id="UI">
-		<p id="input-size-value" value="5">5</p>
-		<input type="range" id="input-size" min="5" max="50" step="1" for="input-size-value" aria-label="Arraste a barra para aumentar o board" value="5">
-		<input type="color" id="input-color" aria-label="Insira a cor desejado.">
-		<div class="sample"></div>
-		<button id="clear" aria-label="Limpar tela">Limpar tela</button>
-		<p>Sua paleta</p>
-		<div id="palette">
+	<section id="UI-container">
+		<div id="UI">
+			<div id="palette-control">
+				<p id="input-size-value" value="5">5</p>
+				<input type="range" id="input-size" min="5" max="50" step="1" for="input-size-value" aria-label="Arraste a barra para aumentar o board" value="5">
+			</div>
+				<input type="color" id="input-color" aria-label="Insira a cor desejado.">
+				<div class="sample"></div>
+			<button id="clear" aria-label="Limpar tela">Limpar tela</button>
+			<p>Sua paleta</p>
+			<div id="palette">
+			</div>
 		</div>
-		<button id="generat-palette" aria-label="Gerar paleta de cores aleatória">Gerar paleta de cores aleatória</button>
-		<select aria-label="tamanho da paleta gerada" id="palette-size">
-			<option value="3">3</option>
-			<option value="5">5</option>
-			<option value="7">7</option>
+		<div id="randon-palette-container"></div>
+			<button id="generat-palette" aria-label="Gerar paleta de cores aleatória">Gerar paleta de cores aleatória</button>
+			<select aria-label="tamanho da paleta gerada" id="palette-size">
+				<option value="3">3</option>
+				<option value="5">5</option>
+				<option value="7">7</option>
 		</select>
+		<button id="get-rnd">Get</button>
+		<button id="save-rnd">OK</button>
+		<button id="close-pallet">></button>
 		<div id="randon-palette"></div>
 	</section>
 	<section id="standard-samples">

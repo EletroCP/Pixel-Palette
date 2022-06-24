@@ -9,6 +9,7 @@ const randoPalette = document.getElementById('randon-palette');
 const board = document.getElementById('board');
 const palette = document.getElementById('palette');
 const standardSamples = document.getElementById('standard-samples');
+const randoPaletteContainer = document.getElementById('randon-palette-container');
 
 let color = 'black';
 
@@ -72,9 +73,30 @@ const getColor = () => {
   color = sample.style.backgroundColor;
 }
 
+const generateRandomColor = () => {
+  const randonNumber = parseInt(Math.random() * 255, 10);
+  return randonNumber;
+}
+
+const clearPalette = () => {
+  document.querySelectorAll('.rndPalette').forEach((pixel) => pixel.remove());
+}
+
+const generateRandoPaletter = () => {
+  clearPalette();
+  for(let index = 0; index < paletteSize.value; index +=1) {
+    const element = document.createElement('div');
+    element.className = 'sample rndPalette';
+    element.id = `rndPalette${[index]}`;
+    element.style.backgroundColor = `rgb(${generateRandomColor()}, ${generateRandomColor()}, ${generateRandomColor()})`;
+    element.addEventListener('click', paint);
+    randoPalette.appendChild(element);
+  }
+}
+generatePalette.addEventListener('click', generateRandoPaletter)
 sample.addEventListener('click', getColor)
 clear.addEventListener('click', resetBoard);
-inputSize.addEventListener('change', changeInputSizeValue);
+inputSize.addEventListener('input', changeInputSizeValue);
 inputColor.addEventListener('change', changeSampleBackgroundColor, getColor);
 window.onload = () => {
   changeSampleBackgroundColor();
