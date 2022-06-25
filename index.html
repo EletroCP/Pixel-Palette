@@ -10,25 +10,23 @@
 </head>
 
 <body>
-	<section id="UI-container">
-		<div id="UI">
-			<div id="palette-control">
+	<header>
+		<div id="palette-control">
 				<p id="input-size-info">A tela possui 25 pixels</p>
 				<p id="input-size-value">5</p>
 				<input type="range" id="input-size" min="5" max="10" step="1" for="input-size-value"
-					aria-label="Arraste a barra para aumentar o board" value="5">
+					aria-label="Arraste a barra para aumentar o board" value="1">
 			</div>
-			<input type="color" id="input-color" aria-label="Insira a cor desejado.">
-			<div class="sample"></div>
 			<button id="clear" aria-label="Limpar tela">Limpar tela</button>
-		</div>
-		</div>
-		<div id="palletes">
-			<p>Sua paleta</p>
-			<div id="user-palette"></div>
-			<div id="palette">
-
-				<div id="randon-palette-container"></div>
+			<div id="UI">
+				<input type="color" id="input-color" aria-label="Insira a cor desejado.">
+				<div class="sample"></div>
+			</div>
+	</header>
+	<aside	id="palettes">
+		<p>Sua paleta</p>
+		<div id="user-palette"></div>
+		<div id="randon-palette-container"></div>
 				<button id="generat-palette" aria-label="Gerar paleta de cores aleatória">Gerar paleta de cores
 					aleatória</button>
 				<select aria-label="tamanho da paleta gerada" id="palette-size">
@@ -39,15 +37,14 @@
 				<button id="get-rnd">Get</button>
 				<button id="save-rnd">OK</button>
 				<button id="close-pallet">></button>
-
 				<div id="randon-palette"></div>
-	</section>
-	<section id="standard-samples">
-	</section>
-	</div>
-	<section id="board-container">
+				<div id="palette-conainer">
+					<div id="palette"></div>
+				</div>
+	</aside>
+	<main id="board-container">
 		<div id="board"></div>
-	</section>
+	</main>
 	<script src="./script.js"></script>
 </body>
 
