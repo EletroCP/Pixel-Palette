@@ -92,6 +92,10 @@ header {
   border: rgb(255, 0, 0) 1px solid;
 }
 
+#input-size-value {
+  display: none;
+}
+
 #UI {
   width: 100%;
   gap: 1rem;

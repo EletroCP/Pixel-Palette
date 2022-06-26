@@ -4,15 +4,12 @@ const inputColor = document.getElementById('input-color');
 const sample = document.querySelector('.sample');
 const clear = document.getElementById('clear');
 const generatePalette = document.getElementById('generat-palette');
-const paletteSize = document.getElementById('palette-size');
-const randoPalette = document.getElementById('randon-palette');
 const board = document.getElementById('board');
 const palette = document.getElementById('palette');
-const standardSamples = document.getElementById('standard-samples');
-const randoPaletteContainer = document.getElementById('randon-palette-container');
-const inputSizeInfo = document.getElementById('input-size-info');
 const userPalette = document.getElementById('user-palette');
 const selecColor = document.getElementById('select-color');
+const salver = document.getElementById('save');
+const caarregar = document.getElementById('load');
 
 const size = () => {
   const size = parseInt(inputSizeValue.innerText);
@@ -37,6 +34,7 @@ const generateBoard = () => {
     const element = document.createElement('div');
     element.className = 'pixel';
     element.addEventListener('dragover', paint);
+    element.addEventListener('click', paint);
     board.appendChild(element);
   }
 }
