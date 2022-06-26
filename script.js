@@ -113,7 +113,7 @@ board.addEventListener('contextmenu', (event) => event.preventDefault())
 userPalette.addEventListener('contextmenu', (event) => event.preventDefault())
 selecColor.addEventListener('click', select, () => selecColor.classList.add('select'))
 sample.addEventListener('click', getColor, select)
-clear.addEventListener('click', resetBoard);
+clear.addEventListener('click', generateBoard);
 inputSize.addEventListener('input', changeInputSizeValue);
 inputColor.addEventListener('input', changeSampleBackgroundColor, getColor);
 
