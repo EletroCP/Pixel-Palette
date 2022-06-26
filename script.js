@@ -10,6 +10,8 @@ const userPalette = document.getElementById('user-palette');
 const selecColor = document.getElementById('select-color');
 const eraser = document.getElementById('eraser');
 
+let color = 'black';
+
 const size = () => {
   const size = parseInt(inputSizeValue.innerText);
   return size;
@@ -58,18 +60,7 @@ const getColor = (event) => {
 const getPaletteColor = ({ target }) => {
   const newColor = target.style.backgroundColor;
   sample.style.backgroundColor = newColor;
-  selecColor.classList.add('select');
 }
-
-const select = ({ target }) => {
-  const select = document.querySelectorAll('.select');
-  if (select.length > 0) {
-    select.forEach((element) => {
-      element.classList.remove('select')});
-    return target.classList.add('select');
-  }
-  target.classList.add('select');
- }
 
 const generatepalette = () => {
   for (let index = 0; index < 24; index += 1) {
@@ -91,7 +82,7 @@ const changeInputSizeValue = () => {
 const changeSampleBackgroundColor = () => {
   const newColor = inputColor.value;
   sample.style.backgroundColor = newColor;
-  selecColor.style.boxShadow = '';
+  color = newColor;
 }
 
 const resetBoard = () => {
@@ -99,20 +90,16 @@ const resetBoard = () => {
   generateBoard(size());
 }
 
-const selectEraser = (event) => {
-  sample.style.backgroundColor = 'rgb(61, 61, 61)';
-  const select = document.querySelectorAll('.select');
-  if (select.length > 0) {
-    select.forEach((element) => {
-      element.classList.remove('select')});
-    }
+const selectEraser = () => {
+  color = 'rgb(61, 61, 61)';
+  sample.style.backgroundColor = color;
 }
 
 eraser.addEventListener('click', selectEraser)
 board.addEventListener('contextmenu', (event) => event.preventDefault())
 userPalette.addEventListener('contextmenu', (event) => event.preventDefault())
-selecColor.addEventListener('click', select, () => selecColor.classList.add('select'))
-sample.addEventListener('click', getColor, select)
+selecColor.addEventListener('click', () => selecColor.classList.add('select'))
+sample.addEventListener('click', getColor)
 clear.addEventListener('click', generateBoard);
 inputSize.addEventListener('input', changeInputSizeValue);
 inputColor.addEventListener('input', changeSampleBackgroundColor, getColor);
