@@ -4,7 +4,7 @@
 }
 
 :root {
-  --main-color: rgb(74, 51, 51);
+  --main-color: rgb(39, 39, 39);
   --secudary-color: rgb(188, 252, 201);
   --last-color: rgb(126, 217, 87);
 }
@@ -89,7 +89,6 @@ header {
 #select-color {
   width: 40px;
   height: 40px;
-  border: rgb(255, 0, 0) 1px solid;
 }
 
 #input-size-value {
@@ -103,6 +102,7 @@ header {
   justify-content: center;
   align-items: center;
   padding-top: 2.5rem;
+  flex-direction: column;
 }
 
 #input-color {
@@ -110,8 +110,12 @@ header {
 }
 
 #palette-ico {
-  width: 70px;
+  width: 64px;
   filter: invert(100%);
+}
+
+#eraser {
+  width: 58px;
 }
 
 #board {
@@ -134,4 +138,9 @@ header {
 
 #main-board-container{ 
   display: flex;
+}
+
+.select {
+  box-shadow: rgb(126, 217, 87) 0 10px 6px -6px
+
 }

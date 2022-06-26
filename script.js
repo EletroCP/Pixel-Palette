@@ -8,8 +8,7 @@ const board = document.getElementById('board');
 const palette = document.getElementById('palette');
 const userPalette = document.getElementById('user-palette');
 const selecColor = document.getElementById('select-color');
-const salver = document.getElementById('save');
-const caarregar = document.getElementById('load');
+const eraser = document.getElementById('eraser');
 
 const size = () => {
   const size = parseInt(inputSizeValue.innerText);
@@ -17,20 +16,24 @@ const size = () => {
 
 }
 
-let color = 'black';
-
 const clearBoard = () => {
   document.querySelectorAll('.pixel').forEach((pixel) => pixel.remove());
 }
 
-const paint = ({ target }) => {
-  target.style.backgroundColor = color;
+const paint = (event) => {
+  const { target } = event;
+  if (event.button === 0) {
+    target.style.backgroundColor = color;
+  } else if (event.button === 3) {
+    target.style.backgroundColor = 'rgb(61, 61, 61)';
+  }
+
 }
 
 const generateBoard = () => {
   clearBoard();
   board.style.setProperty('--size', inputSizeValue.innerText)
-  for(let index = 0; index < size() * size() ; index +=1) {
+  for (let index = 0; index < size() * size(); index += 1) {
     const element = document.createElement('div');
     element.className = 'pixel';
     element.addEventListener('dragover', paint);
@@ -45,20 +48,36 @@ const generateRandomColor = () => {
 }
 const getColor = (event) => {
   const { target } = event;
-  console.log(event.button)
-  if(event.button === 0) {
+  if (event.button === 0) {
     color = target.style.backgroundColor;
   } else if (event.button === 2) {
     target.style.backgroundColor = color;
   }
 }
 
+const getPaletteColor = ({ target }) => {
+  const newColor = target.style.backgroundColor;
+  sample.style.backgroundColor = newColor;
+  selecColor.classList.add('select');
+}
+
+const select = ({ target }) => {
+  const select = document.querySelectorAll('.select');
+  if (select.length > 0) {
+    select.forEach((element) => {
+      element.classList.remove('select')});
+    return target.classList.add('select');
+  }
+  target.classList.add('select');
+ }
+
 const generatepalette = () => {
-  for(let index = 0; index < 24; index +=1) {
+  for (let index = 0; index < 24; index += 1) {
     const element = document.createElement('div');
     element.className = 'palette';
     element.style.backgroundColor = `rgb(${generateRandomColor()}, ${generateRandomColor()}, ${generateRandomColor()})`
     element.addEventListener('mousedown', getColor);
+    element.addEventListener('click', getPaletteColor);
     userPalette.appendChild(element);
   }
 }
@@ -72,18 +91,28 @@ const changeInputSizeValue = () => {
 const changeSampleBackgroundColor = () => {
   const newColor = inputColor.value;
   sample.style.backgroundColor = newColor;
-  selecColor.style.border = 'rgb(255, 0, 0) 1px solid';
+  selecColor.style.boxShadow = '';
 }
 
 const resetBoard = () => {
   inputSize.value = 05;
-  inputSizeValue.innerText = 05;
   generateBoard(size());
 }
-board.addEventListener('contextmenu', event => event.preventDefault());
-userPalette.addEventListener('contextmenu', event => event.preventDefault());
-selecColor.addEventListener('click', () => selecColor.style.borderColor = 'rgb(0, 255, 0)')
-sample.addEventListener('click', getColor)
+
+const selectEraser = (event) => {
+  sample.style.backgroundColor = 'rgb(61, 61, 61)';
+  const select = document.querySelectorAll('.select');
+  if (select.length > 0) {
+    select.forEach((element) => {
+      element.classList.remove('select')});
+    }
+}
+
+eraser.addEventListener('click', selectEraser)
+board.addEventListener('contextmenu', (event) => event.preventDefault())
+userPalette.addEventListener('contextmenu', (event) => event.preventDefault())
+selecColor.addEventListener('click', select, () => selecColor.classList.add('select'))
+sample.addEventListener('click', getColor, select)
 clear.addEventListener('click', resetBoard);
 inputSize.addEventListener('input', changeInputSizeValue);
 inputColor.addEventListener('input', changeSampleBackgroundColor, getColor);
