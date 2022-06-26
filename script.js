@@ -11,6 +11,14 @@ const palette = document.getElementById('palette');
 const standardSamples = document.getElementById('standard-samples');
 const randoPaletteContainer = document.getElementById('randon-palette-container');
 const inputSizeInfo = document.getElementById('input-size-info');
+const userPalette = document.getElementById('user-palette');
+const selecColor = document.getElementById('select-color');
+
+const size = () => {
+  const size = parseInt(inputSizeValue.innerText);
+  return size;
+
+}
 
 let color = 'black';
 
@@ -24,15 +32,26 @@ const paint = ({ target }) => {
 
 const generateBoard = () => {
   clearBoard();
-  const number = parseInt(inputSizeValue.innerText);
-  const size = number * number
-  board.style.width = (size * 32) + 'px';
-  inputSizeInfo.innerHTML = `A tela possui ${size} pixels`;
-  for(let index = 0; index < size ; index +=1) {
+  board.style.setProperty('--size', inputSizeValue.innerText)
+  for(let index = 0; index < size() * size() ; index +=1) {
     const element = document.createElement('div');
     element.className = 'pixel';
-    element.addEventListener('click', paint);
+    element.addEventListener('dragover', paint);
     board.appendChild(element);
+  }
+}
+
+const generateRandomColor = () => {
+  const randonNumber = parseInt(Math.random() * 255, 10);
+  return randonNumber;
+}
+const getColor = (event) => {
+  const { target } = event;
+  console.log(event.button)
+  if(event.button === 0) {
+    color = target.style.backgroundColor;
+  } else if (event.button === 2) {
+    target.style.backgroundColor = color;
   }
 }
 
@@ -40,52 +59,32 @@ const generatepalette = () => {
   for(let index = 0; index < 24; index +=1) {
     const element = document.createElement('div');
     element.className = 'palette';
-    element.addEventListener('click', paint);
-    palette.appendChild(element);
+    element.style.backgroundColor = `rgb(${generateRandomColor()}, ${generateRandomColor()}, ${generateRandomColor()})`
+    element.addEventListener('mousedown', getColor);
+    userPalette.appendChild(element);
   }
 }
 
 const changeInputSizeValue = () => {
   const newValue = Number(inputSize.value);
   inputSizeValue.innerText = newValue;
-  generateBoard();
+  generateBoard(size());
 }
 
 const changeSampleBackgroundColor = () => {
   const newColor = inputColor.value;
   sample.style.backgroundColor = newColor;
+  selecColor.style.border = 'rgb(255, 0, 0) 1px solid';
 }
 
 const resetBoard = () => {
   inputSize.value = 05;
   inputSizeValue.innerText = 05;
-  generateBoard();
+  generateBoard(size());
 }
-const getColor = () => {
-  color = sample.style.backgroundColor;
-}
-
-const generateRandomColor = () => {
-  const randonNumber = parseInt(Math.random() * 255, 10);
-  return randonNumber;
-}
-
-const clearPalette = () => {
-  document.querySelectorAll('.rndPalette').forEach((pixel) => pixel.remove());
-}
-
-const generateRandoPaletter = () => {
-  clearPalette();
-  for(let index = 0; index < paletteSize.value; index +=1) {
-    const element = document.createElement('div');
-    element.className = 'sample rndPalette';
-    element.id = `rndPalette${[index]}`;
-    element.style.backgroundColor = `rgb(${generateRandomColor()}, ${generateRandomColor()}, ${generateRandomColor()})`;
-    element.addEventListener('click', paint);
-    randoPalette.appendChild(element);
-  }
-}
-generatePalette.addEventListener('click', generateRandoPaletter)
+board.addEventListener('contextmenu', event => event.preventDefault());
+userPalette.addEventListener('contextmenu', event => event.preventDefault());
+selecColor.addEventListener('click', () => selecColor.style.borderColor = 'rgb(0, 255, 0)')
 sample.addEventListener('click', getColor)
 clear.addEventListener('click', resetBoard);
 inputSize.addEventListener('input', changeInputSizeValue);
@@ -93,6 +92,6 @@ inputColor.addEventListener('input', changeSampleBackgroundColor, getColor);
 
 window.onload = () => {
   changeSampleBackgroundColor();
-  generateBoard();
+  generateBoard(size());
   generatepalette();
 };

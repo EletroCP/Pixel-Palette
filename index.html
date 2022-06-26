@@ -12,39 +12,30 @@
 <body>
 	<header>
 		<div id="palette-control">
-				<p id="input-size-info">A tela possui 25 pixels</p>
-				<p id="input-size-value">5</p>
-				<input type="range" id="input-size" min="5" max="10" step="1" for="input-size-value"
-					aria-label="Arraste a barra para aumentar o board" value="1">
-			</div>
-			<button id="clear" aria-label="Limpar tela">Limpar tela</button>
-			<div id="UI">
-				<input type="color" id="input-color" aria-label="Insira a cor desejado.">
-				<div class="sample"></div>
-			</div>
+			<p id="input-size-value">5</p>
+			<input type="range" id="input-size" min="5" max="15" step="1" for="input-size-value"
+				aria-label="Arraste a barra para aumentar o board" value="1">
+		</div>
+		<button id="clear" aria-label="Limpar tela">Limpar tela</button>
 	</header>
-	<aside	id="palettes">
-		<p>Sua paleta</p>
-		<div id="user-palette"></div>
-		<div id="randon-palette-container"></div>
-				<button id="generat-palette" aria-label="Gerar paleta de cores aleatória">Gerar paleta de cores
-					aleatória</button>
-				<select aria-label="tamanho da paleta gerada" id="palette-size">
-					<option value="3">3</option>
-					<option value="5">5</option>
-					<option value="7">7</option>
-				</select>
-				<button id="get-rnd">Get</button>
-				<button id="save-rnd">OK</button>
-				<button id="close-pallet">></button>
-				<div id="randon-palette"></div>
-				<div id="palette-conainer">
-					<div id="palette"></div>
+	<div id="main-board-container">
+		<aside id="palettes">
+			<div class="user-container">
+				<div id="user-palette"></div>
+			</div>
+			<div>
+				<div id="UI">
+					<input type="color" id="input-color" aria-label="Insira a cor desejado.">
+					<div class="sample" id="select-color"></div>
+					<label for="input-color">
+						<img id="palette-ico" src="./src/palette.png" alt="paleta de cores">
+					</label>
 				</div>
-	</aside>
-	<main id="board-container">
-		<div id="board"></div>
-	</main>
+		</aside>
+		<main id="board-container">
+			<div id="board"></div>
+		</main>
+	</div>
 	<script src="./script.js"></script>
 </body>
 
