@@ -6,8 +6,8 @@ Ferramenta para criação de pixel art.
 ![](src/gif/pixelPalette.gif)
 
 # Metas a se atingir.
- - [x] Adicionar uma nova tarefa;
- - [x] Inicia com uma pleta aleatória;
+ - [x] Redimencionar a tela;
+ - [x] Inicia com uma paleta aleatória;
  - [x] Poder escolher a cor;
  - [x] "Apagar" o pixel;
  - [ ] Salvar desenhos para continuar;
